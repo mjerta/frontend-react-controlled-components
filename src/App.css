@@ -1,1 +1,37 @@
 /*Schrijf hier jouw css voor jouw formulier*/
+label {
+    display: block;
+    margin: 24px 16px;
+}
+
+select {
+    display: block;
+    margin: 12px 0 0 0;
+}
+
+input {
+    margin: 0 0 0 8px;
+}
+
+legend {
+    font-weight: 500;
+}
+
+textarea {
+    margin: 8px 0 0 0;
+    display: block;
+}
+
+fieldset {
+    border: 2px solid #ededed;
+    border-radius: 4px;
+    margin: 16px 0;
+}
+
+button {
+    border-radius: 4px;
+    border: none;
+    padding: 8px;
+    margin: 0 16px 16px;
+
+}
