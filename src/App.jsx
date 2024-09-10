@@ -21,8 +21,8 @@ function App() {
   }
 
   function handleChange(e) {
-    e.target.type === 'checkbox' ? setState({ ...state, [e.target.name]: e.target.value }):
-    setState({...state, [e.target.name]: e.target.value});
+    const newValue = e.target.type === 'checkbox' ? e.target.checked : e.target.value;
+    setState({...state, [e.target.name]: newValue});
   }
 
   return (
@@ -69,8 +69,9 @@ function App() {
             <input
               type="checkbox"
               id="newsletter"
-              value={state.checkboxInput}
-              onClick={handleChange}
+              name="checkboxInput"
+              checked={state.checkboxInput}
+              onChange={handleChange}
             />
             Ik schrijf me in voor de niewsbrief
           </label>
