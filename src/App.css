@@ -1,1 +1,52 @@
 /*Schrijf hier jouw css voor jouw formulier*/
+*, *::before, *::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+form {
+  flex-basis: 25rem;
+}
+fieldset {
+  display: flex;
+  flex-direction: column;
+  padding: 1rem 1rem 1rem 0;
+  border-radius: .2rem;
+
+  & legend {
+    font-size: 1.5rem;
+    font-weight: bold;
+  }
+
+  & label {
+    margin-left: 1rem;
+    margin-bottom: 1rem;
+    & input {
+      margin-left: 0.5rem;
+    }
+    & input[type=number] {
+      -moz-appearance: textfield;
+    }
+
+    & input[type=checkbox] {
+      margin-right: .5rem;
+    }
+  }
+  button {
+    margin-left: 0.5rem;
+    align-self: flex-start;
+  }
+}
+
+.comment-section {
+  display: flex;
+  flex-direction: column;
+}
