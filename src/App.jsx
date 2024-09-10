@@ -2,15 +2,27 @@ import React from 'react';
 import './App.css';
 
 function App() {
-  const [nameInput, setNameInput] = React.useState('');
-  const [ageInput, setAgeInput] = React.useState('0');
-  const [commentInput, setCommentInput] = React.useState('');
-  const [checkboxInput, toggleCommentInput] = React.useState(false);
+  // const [nameInput, setNameInput] = React.useState('');
+  // const [ageInput, setAgeInput] = React.useState('0');
+  // const [comments, setCommentInput] = React.useState('');
+  // const [checkboxInput, toggleCommentInput] = React.useState(false);
+
+  const [state, setState] = React.useState({
+    userName:'',
+    age:'0',
+    comments: '',
+    checkboxInput: false,
+  });
 
   function handleSubmit(e) {
     e.preventDefault();
     console.log("Verstuurd!")
-    console.log(nameInput, ageInput, commentInput, checkboxInput);
+    console.log(state.userName, state.age, state.comments, state.checkboxInput);
+  }
+
+  function handleChange(e) {
+    e.target.type === 'checkbox' ? setState({ ...state, [e.target.name]: e.target.value }):
+    setState({...state, [e.target.name]: e.target.value});
   }
 
   return (
@@ -18,14 +30,14 @@ function App() {
       <form onSubmit={handleSubmit}>
         <fieldset>
           <legend>Gegevens</legend>
-          <label htmlFor="username">
+          <label htmlFor="userName">
             Naam:
             <input
               type="text"
-              id="username"
-              name="name"
-              value={nameInput}
-              onChange={(e) => setNameInput([e.target.value])}
+              id="userName"
+              name="userName"
+              value={state.userName}
+              onChange={handleChange}
             />
           </label>
           <label htmlFor="age">
@@ -34,8 +46,8 @@ function App() {
               type="number"
               id="age"
               name="age"
-              value={ageInput}
-              onChange={(e) => setAgeInput(e.target.value)}
+              value={state.age}
+              onChange={handleChange}
             />
           </label>
         </fieldset>
@@ -46,8 +58,9 @@ function App() {
             <textarea
               id="comments"
               placeholder="Wat vond je van het recept"
-              value={commentInput}
-              onChange={(e) => setCommentInput(e.target.value)}
+              name="comments"
+              value={state.comments}
+              onChange={handleChange}
               rows="4"
             >
                 </textarea>
@@ -56,8 +69,8 @@ function App() {
             <input
               type="checkbox"
               id="newsletter"
-              value={checkboxInput}
-              onClick={() => toggleCommentInput(!commentInput)}
+              value={state.checkboxInput}
+              onClick={handleChange}
             />
             Ik schrijf me in voor de niewsbrief
           </label>
