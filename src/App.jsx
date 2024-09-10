@@ -10,7 +10,7 @@ function App() {
   function handleSubmit(e) {
     e.preventDefault();
     console.log("Verstuurd!")
-    // console.log(e.target.)
+    console.log(nameInput, ageInput, commentInput, checkboxInput);
   }
 
   return (

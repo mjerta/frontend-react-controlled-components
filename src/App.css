@@ -1,8 +1,15 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
+
 /*Schrijf hier jouw css voor jouw formulier*/
 *, *::before, *::after {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+}
+
+body {
+  font-family: "Roboto", system-ui;
+  background: #d7eac9;
 }
 
 .wrapper {
@@ -13,7 +20,11 @@
 }
 
 form {
+  background: #efc2a5;
   flex-basis: 25rem;
+  border-radius: 1rem;
+  padding: 1rem;
+  border: 3px dotted;
 }
 fieldset {
   display: flex;
@@ -31,6 +42,8 @@ fieldset {
     margin-bottom: 1rem;
     & input {
       margin-left: 0.5rem;
+      border-radius: 0.4rem;
+      padding: .4rem;
     }
     & input[type=number] {
       -moz-appearance: textfield;
@@ -39,10 +52,26 @@ fieldset {
     & input[type=checkbox] {
       margin-right: .5rem;
     }
+
+    & textarea {
+      padding: .4rem;
+      border-radius: 0.2rem;
+    }
   }
   button {
+    border-radius: 0.4rem;
+    padding: .4rem 1rem;
     margin-left: 0.5rem;
     align-self: flex-start;
+    background: #a6c28e;
+    color: #8c4112;
+    border: 2px solid #000;
+    cursor: pointer;
+    font-weight: bold;
+  }
+
+  button:hover {
+    background: #7b9f5c;
   }
 }
 
