@@ -79,3 +79,20 @@ fieldset {
   display: flex;
   flex-direction: column;
 }
+
+
+input{
+  border: none;
+}
+
+input:focus{
+  outline: none;
+}
+
+.is-valid {
+  border: 2px solid green;
+}
+
+.is-invalid {
+  border: 2px solid red;
+}
