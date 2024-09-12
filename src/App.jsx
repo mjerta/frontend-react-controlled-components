@@ -5,7 +5,13 @@ import './App.css';
 function App() {
 
   const {
-    register, handleSubmit, formState: {errors}, watch
+    register,
+    handleSubmit,
+    formState: {
+      errors,
+      dirtyFields,
+    },
+    watch
   } = useForm({mode: 'onChange'});
 
   const watchSelectedReferrer = watch('found-through');
@@ -17,7 +23,7 @@ function App() {
   // const [checkboxInput, toggleCommentInput] = React.useState(false);
 
   const [state, setState] = React.useState({
-    userName: '', age: '0', comments: '', checkboxInput: false,
+    userName: '', age: '', comments: '', checkboxInput: false,
   });
 
   function onFormSubmit(data) {
@@ -28,11 +34,23 @@ function App() {
   }
 
   function handleChange(e) {
-    console.log(e.target.value)
     const newValue = e.target.type === 'checkbox' ? e.target.checked : e.target.value;
     setState({...state, [e.target.name]: newValue});
   }
 
+  function handleKeyPress(e) {
+    // Allow navigation keys, backspace, delete, and control keys
+    const allowedKeys = [
+      'Backspace', 'Delete', 'ArrowLeft', 'ArrowRight', 'Tab', 'Enter', 'Escape',
+      'Control', 'Shift', 'Alt', 'Meta' // Modifier keys
+    ];
+    // Check if the key is a number or allowed key
+    const isNumber = /^\d$/.test(e.key);
+    const isAllowedKey = allowedKeys.includes(e.key);
+    if (!isNumber && !isAllowedKey) {
+      e.preventDefault(); // Prevent the default action if the key is not allowed
+    }
+  }
   return (<div className="wrapper">
     <form onSubmit={handleSubmit(onFormSubmit)}>
       <fieldset>
@@ -42,8 +60,8 @@ function App() {
           <input
             type="text"
             id="userName"
-            className={errors.userName ? "is-invalid" : "is-valid"}
-            // this regist methode below is using a spread operator cause its need to put the reference as well as the name of the element
+            className={dirtyFields.userName ? errors.userName ? "is-invalid" : "is-valid" : ""}
+            // this register methode below is using a spread operator cause its need to put the reference as well as the name of the element
             {...register("userName", {
               // Input text when filled in will return to true
               // required: "true",
@@ -61,14 +79,13 @@ function App() {
           <input
             type="number"
             id="age"
-            className={errors.userName ? "is-invalid" : "is-valid"}
+            onKeyDown={handleKeyPress}
+            className={dirtyFields.age ? errors.age ? "is-invalid" : "is-valid" : ""}
             {...register("age", {
               max: {
-                value: 80, message: "Je mag maximaal 80 jaar oud zijn"
-              },
+                value: 80, message: "Je mag maximaal 80 jaar oud zijn",
+                },
             })}
-            // value={state.age}
-            // onChange={handleChange}
           />
           {errors.age && <p>{errors.age.message}</p>}
         </label>
