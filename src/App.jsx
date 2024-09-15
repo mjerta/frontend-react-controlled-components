@@ -2,6 +2,8 @@ import React from 'react';
 import {useForm} from 'react-hook-form';
 import './App.css';
 
+import InputComponent from './components/InputComponent';
+
 function App() {
 
   const {
@@ -22,7 +24,7 @@ function App() {
   // const [comments, setCommentInput] = React.useState('');
   // const [checkboxInput, toggleCommentInput] = React.useState(false);
 
-  const [state, setState] = React.useState({
+  const [state  , setState] = React.useState({
     userName: '', age: '', comments: '', checkboxInput: false,
   });
 
@@ -51,10 +53,15 @@ function App() {
       e.preventDefault(); // Prevent the default action if the key is not allowed
     }
   }
+
   return (<div className="wrapper">
     <form onSubmit={handleSubmit(onFormSubmit)}>
       <fieldset>
         <legend>Gegevens</legend>
+        <InputComponent
+          intputType="text"
+          inputId="name-field"
+        />
         <label htmlFor="userName">
           Naam:
           <input
@@ -84,7 +91,7 @@ function App() {
             {...register("age", {
               max: {
                 value: 80, message: "Je mag maximaal 80 jaar oud zijn",
-                },
+              },
             })}
           />
           {errors.age && <p>{errors.age.message}</p>}
